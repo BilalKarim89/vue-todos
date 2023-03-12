@@ -1,77 +1,50 @@
 <script setup>
 import { Icon } from "@iconify/vue";
-import { uid } from "uid";
-import { ref, computed } from "vue";
+import { computed } from "vue";
+import { useStore } from 'vuex';
 import TodoCreator from "../components/TodoCreator.vue";
 import TodoItem from "../components/TodoItem.vue";
 
-const todoList = ref([]);
+const store = useStore();
+
+const title = computed(() => store.state.title);
+const todoList = computed(() => store.state.todos);
 
 const todosCompleted = computed(() => {
   return todoList.value.every((todo) => todo.isCompleted);
 });
 
 const fetchTodoList = () => {
-  const savedTodoList = JSON.parse(localStorage.getItem("todoList"));
-  if (savedTodoList) {
-    todoList.value = savedTodoList;
-  }
+  store.commit('fetchTodoList');
 };
 
 // Fetch Todo's on page load
 fetchTodoList();
 
-const setTodoListLocalStorage = () => {
-  localStorage.setItem("todoList", JSON.stringify(todoList.value));
-};
-
 const createTodo = (todo) => {
-  todoList.value.push({
-    id: uid(),
-    todo,
-    isCompleted: false,
-    isEditing: null,
-    date: getCurrentDate()
-  });
-  setTodoListLocalStorage();
+  store.commit('createTodo', todo);
 };
-
-const getCurrentDate = () => {
-  let today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
-  const yyyy = today.getFullYear();
-
-  today = mm + '/' + dd + '/' + yyyy;
-  return today;
-}
 
 const toggleEditTodo = (todoPos) => {
-  todoList.value[todoPos].isEditing = !todoList.value[todoPos].isEditing;
-  setTodoListLocalStorage();
+  store.commit('toggleEditTodo', todoPos);
 };
 
 const updateTodo = (todoVal, todoPos) => {
-  todoList.value[todoPos].todo = todoVal;
-  setTodoListLocalStorage();
+  store.commit('updateTodo', { todoVal, todoPos });
 };
 
 const toggleTodoComplete = (todoPos) => {
-  todoList.value[todoPos].isCompleted = !todoList.value[todoPos].isCompleted;
-  setTodoListLocalStorage();
+  store.commit('toggleTodoComplete', todoPos);
 };
 
 const deleteTodo = (todo) => {
-  todoList.value = todoList.value.filter(
-    (todoFilter) => todoFilter.id !== todo.id
-  );
-  setTodoListLocalStorage();
+  store.commit('deleteTodo', todo);
 };
 </script>
 
 <template>
   <main>
-    <h1>Create Todo</h1>
+    <h1>{{title}}</h1>
     <TodoCreator @create-todo="createTodo">
       <template #button-content>Create</template>
     </TodoCreator>
