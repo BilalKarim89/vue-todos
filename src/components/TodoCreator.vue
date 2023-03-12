@@ -33,39 +33,22 @@ const createTodo = () => {
 
 <style lang="scss" scoped>
 .input-wrap {
-  display: flex;
-  transition: 250ms ease;
-  border: 2px solid #41b080;
-
-  &.input-err {
-    border-color: red;
-  }
-
-  &:focus-within {
-    box-shadow: 0 -4px 6px -1px rgb(0 0 0 / 0.1),
-      0 -2px 4px -2px rgb(0 0 0 / 0.1);
-  }
-
-  input {
-    width: 100%;
-    padding: 8px 6px;
-    border: none;
-
-    &:focus {
-      outline: none;
-    }
-  }
-
-  button {
-    padding: 8px 16px;
-    border: none;
-  }
+  @apply flex transition-[250ms] duration-[ease] border-2 border-solid border-[#41b080] focus-within:shadow-[0_-4px_6px_-1px_rgb(0_0_0_/_0.1),0_-2px_4px_-2px_rgb(0_0_0_/_0.1)];
 }
-
+.input-wrap.input-err {
+  @apply border-[red];
+}
+.input-wrap input {
+  @apply w-full px-1.5 py-2 border-[none];
+}
+.input-wrap input:focus {
+  outline: none;
+}
+.input-wrap button {
+  @apply px-4 py-2 border-[none];
+}
 .err-msg {
-  margin-top: 6px;
-  font-size: 12px;
-  text-align: center;
-  color: red;
+  @apply text-xs text-center text-[red] mt-1.5;
 }
+
 </style>

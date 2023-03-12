@@ -13,15 +13,13 @@
 <style scoped lang="scss">
 @media (min-width: 1024px) {
   .about {
-    padding: 25px 16px;
-
-    h1 {
-      margin-bottom: 15px;
-    }
-
-    p {
-      margin-bottom: 12px
-    }
+    @apply px-4 py-[25px];
+  }
+  .about h1 {
+    @apply mb-[15px];
+  }
+  .about p {
+    @apply mb-3;
   }
 }
 </style>

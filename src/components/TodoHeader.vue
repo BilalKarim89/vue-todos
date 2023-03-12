@@ -19,37 +19,26 @@ import { RouterLink } from "vue-router";
 
 <style lang="scss" scoped>
 header {
-  background-color: #f1f1f1;
-  nav {
-    display: flex;
-    align-items: center;
-    padding: 25px 16px;
-
-    .branding {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      img {
-        max-width: 50px;
-      }
-
-      h1 {
-        font-size: 24px;
-      }
-    }
-
-    .nav-routes {
-      display: flex;
-      flex: 1;
-      justify-content: flex-end;
-      gap: 12px;
-      list-style: none;
-
-      a {
-        text-decoration: none;
-        color: inherit;
-      }
-    }
-  }
+  @apply bg-[#f1f1f1];
 }
+header nav {
+  @apply flex items-center px-4 py-[25px];
+}
+header nav .branding {
+  @apply flex items-center gap-2;
+}
+header nav .branding img {
+  @apply max-w-[50px];
+}
+header nav .branding h1 {
+  @apply text-2xl;
+}
+header nav .nav-routes {
+  @apply flex flex-[1] justify-end gap-3;
+  list-style: none;
+}
+header nav .nav-routes a {
+  @apply no-underline text-inherit;
+}
+
 </style>

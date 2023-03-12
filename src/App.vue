@@ -12,14 +12,11 @@ import TodoHeader from "./components/TodoHeader.vue";
 @import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap");
 
 * {
+  @apply box-border m-0 p-0;
   font-family: "Rubik", sans-serif;
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+}
+.container {
+  @apply max-w-[1100px] mx-auto my-0;
 }
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-}
 </style>

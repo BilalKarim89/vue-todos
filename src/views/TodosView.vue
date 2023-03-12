@@ -72,32 +72,17 @@ const deleteTodo = (todo) => {
 
 <style scoped lang="scss">
 main {
-  display: flex;
-  flex-direction: column;
-  max-width: 500px;
-  width: 100%;
-  margin: 0 auto;
-  padding: 40px 16px;
-
-  h1 {
-    margin-bottom: 16px;
-    text-align: center;
-  }
-
-  .todo-list {
-    display: flex;
-    flex-direction: column;
-    list-style: none;
-    margin-top: 24px;
-    gap: 20px;
-  }
-
-  .todos-msg {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    margin-top: 24px;
-  }
+  @apply flex flex-col max-w-[500px] w-full mx-auto my-0 px-4 py-10;
 }
+main h1 {
+  @apply text-center mb-4;
+}
+main .todo-list {
+  @apply flex flex-col gap-5 mt-6;
+  list-style: none;
+}
+main .todos-msg {
+  @apply flex items-center justify-center gap-2 mt-6;
+}
+
 </style>
